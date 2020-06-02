@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  DeviceOrientation.swift
 //  
 //
 //  Created by Enes Karaosman on 2.06.2020.
