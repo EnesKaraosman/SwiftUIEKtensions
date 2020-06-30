@@ -22,19 +22,19 @@ import Foundation
  **/
 
 @propertyWrapper
-struct KeyValueStorage<T: Codable> {
+public struct KeyValueStorage<T: Codable> {
     
-    let key: String
-    let defaultValue: T
-    let store: UserDefaults
+    private let key: String
+    private let defaultValue: T
+    private let store: UserDefaults
     
-    init(wrappedValue: T, _ key: String, store: UserDefaults = .standard) {
+    public init(wrappedValue: T, _ key: String, store: UserDefaults = .standard) {
         self.key = key
         self.defaultValue = wrappedValue
         self.store = store
     }
     
-    var wrappedValue: T {
+    public var wrappedValue: T {
         get {
             guard let data = store.object(forKey: key) as? Data else {
                 return defaultValue
