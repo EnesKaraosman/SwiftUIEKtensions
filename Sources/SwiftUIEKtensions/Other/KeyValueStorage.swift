@@ -1,5 +1,5 @@
 //
-//  AppStorage.swift
+//  KeyValueStorage.swift
 //  
 //
 //  Created by Enes Karaosman on 30.06.2020.
@@ -11,7 +11,7 @@ import Foundation
  Usage:
  
  struct AppData {
-     @Apptorage("user_name", defaultValue: "")
+     @KeyValueStorage("user_name", defaultValue: "")
      static var userName: String
  }
  
@@ -21,9 +21,8 @@ import Foundation
 
  **/
 
-@available(iOS, introduced: 14.0, unavailable)
 @propertyWrapper
-struct AppStorage<T: Codable> {
+struct KeyValueStorage<T: Codable> {
     
     let key: String
     let defaultValue: T
