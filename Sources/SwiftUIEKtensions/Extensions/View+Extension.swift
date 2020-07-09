@@ -11,11 +11,16 @@ public extension View {
     
     /// Wraps view inside `AnyView`
     func embedInAnyView() -> AnyView {
-        return AnyView( self )
+        AnyView( self )
     }
     
     /// Wraps view inside `AnyView`
-    func eraseToAnyView() -> AnyView { return embedInAnyView() }
+    func eraseToAnyView() -> AnyView { embedInAnyView() }
+    
+    /// Wraps view inside `NavigationView`
+    func embedInNavigation() -> some View {
+        NavigationView { self }
+    }
     
     /// Apply 1 of the modifiers based on condition.
     func conditionalModifier<M1: ViewModifier, M2: ViewModifier>
