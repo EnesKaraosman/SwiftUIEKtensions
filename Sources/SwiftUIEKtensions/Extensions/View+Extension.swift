@@ -23,7 +23,7 @@ public extension View {
     }
     
     /// Apply 1 of the modifiers based on condition.
-    func conditionalModifier<M1: ViewModifier, M2: ViewModifier>
+    func apply1of2ModifierOnCondition<M1: ViewModifier, M2: ViewModifier>
         (on condition: Bool, trueCase: M1, falseCase: M2) -> some View {
         Group {
             if condition {
@@ -35,11 +35,23 @@ public extension View {
     }
     
     /// Apply modifier if condition matches, otherwise do nothing.
-    func conditionalModifier<M: ViewModifier>
+    func applyModifierOnCondition<M: ViewModifier>
         (on condition: Bool, trueCase: M) -> some View {
         Group {
             if condition {
                 self.modifier(trueCase)
+            }
+        }
+    }
+    
+    /// Apply modifier if condition is true, otherwise returns itself.
+    func applyModifierOnConditionOrReturnSelf<M: ViewModifier>
+        (on condition: Bool, trueCase: M) -> some View {
+        Group {
+            if condition {
+                self.modifier(trueCase)
+            } else {
+                self
             }
         }
     }
