@@ -10,7 +10,7 @@ import SwiftUI
 /**
  Usage;
  
- SingleSelectionList(
+ StatelessSingleSelectionList(
      items: mock,
      selectedItem: $selectedItem,
      modifier: { CheckmarkModifier() }
@@ -21,7 +21,7 @@ import SwiftUI
      }
  }
  */
-public struct SingleSelectionList<Item: Identifiable, Content: View, Modifier: ViewModifier>: View {
+public struct StatelessSingleSelectionList<Item: Identifiable, Content: View, Modifier: ViewModifier>: View {
     
     var items: [Item]
     @Binding var selectedItem: Item?
