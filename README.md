@@ -2,10 +2,14 @@
 
 Table of Contents
 
-- [Views](#views)
- 
-- [Single Selection List](#single-selection-list)
+* [Extensions](#extensions)
+* [Views](#views)
+    - [Single Selection List](#single-selection-list)
+* [View Modifiers](#view-modifiers)
 
+# Extensions
+
+# Views
 ## Single Selection List
 
 Selects 1 item at a time & binds it to selectedItem variable.
@@ -38,3 +42,5 @@ Result is similar below;
 = Item - 3              =
 =========================
 ```
+
+# View Modifiers
