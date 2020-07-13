@@ -26,6 +26,12 @@ public struct StatefulSingleSelectionList<Item: SelectableItem, Content: View, M
     var modifier: () -> Modifier
     var rowContent: (Item) -> Content
     
+    
+    /// Makes single row selection available at a time in a `List`
+    /// - Parameters:
+    ///   - items: Data source of `List`, `Item`s implements `SelectableItem` protocol.
+    ///   - modifier: Modifier to apply when the related item is selected.
+    ///   - rowContent: To represent how row is displayed.
     public init(
         items: Binding<[Item]>,
         modifier: @escaping () -> Modifier,
@@ -45,7 +51,7 @@ public struct StatefulSingleSelectionList<Item: SelectableItem, Content: View, M
             )
             .contentShape(Rectangle())
             .onTapGesture {
-                for (idx, element) in self.items.enumerated() {
+                for (idx, _) in self.items.enumerated() {
                     self.items[idx].isSelected = false
                 }
                 if let idx = self.items.firstIndex(where: { $0.id == item.id }) {

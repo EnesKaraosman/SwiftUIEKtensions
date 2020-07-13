@@ -28,6 +28,13 @@ public struct StatelessMultipleSelectionList<Item: Identifiable, Content: View, 
     var modifier: () -> Modifier
     var rowContent: (Item) -> Content
     
+    
+    /// Makes multiple row selection available in a `List` & binds it to `selectedItems` variable.
+    /// - Parameters:
+    ///   - items: Data source of `List`, `Item`s implements `Identifiable` protocol to be followed.
+    ///   - selectedItems: Selected `Item`s is binded to this variable.
+    ///   - modifier: Modifier to apply when the related item is selected.
+    ///   - rowContent: To represent how row is displayed.
     public init(
         items: [Item],
         selectedItems: Binding<[Item]>,

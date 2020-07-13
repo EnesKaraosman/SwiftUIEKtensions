@@ -26,6 +26,11 @@ public struct StatefulMultipleSelectionList<Item: SelectableItem, Content: View,
     var modifier: () -> Modifier
     var rowContent: (Item) -> Content
     
+    /// Makes multiple row selection available in a `List`
+    /// - Parameters:
+    ///   - items: Data source of `List`, `Item`s implements `SelectableItem` protocol.
+    ///   - modifier: Modifier to apply when the related item is selected.
+    ///   - rowContent: To represent how row is displayed.
     public init(
         items: Binding<[Item]>,
         modifier: @escaping () -> Modifier,

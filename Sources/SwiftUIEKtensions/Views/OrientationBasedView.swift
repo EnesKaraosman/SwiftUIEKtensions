@@ -25,19 +25,27 @@ public struct OrientationBasedView<Content: View>: View {
     
     @EnvironmentObject var device: DeviceOrientation
     
-    public var portrait: () -> Content
-    public var landscape: () -> Content
+    public var portrait: Content
+    public var landscape: Content
     
-    public init(portrait: @escaping () -> Content, landscape: @escaping () -> Content) {
-        self.portrait = portrait
-        self.landscape = landscape
+    
+    /// Portrait & Landscape orientation closures to represent when the related DeviceOrientation is active
+    /// - Parameters:
+    ///   - portrait: `View` that is represented in `Portrait` mode
+    ///   - landscape: `View` that is represented in `Landscape` mode
+    public init(
+        @ViewBuilder portrait: () -> Content,
+        @ViewBuilder landscape: () -> Content
+    ) {
+        self.portrait = portrait()
+        self.landscape = landscape()
     }
     
     public var body: some View {
         if !device.isLandscape {
-            return portrait()
+            return portrait
         } else {
-            return landscape()
+            return landscape
         }
     }
     

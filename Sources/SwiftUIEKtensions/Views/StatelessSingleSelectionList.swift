@@ -28,6 +28,12 @@ public struct StatelessSingleSelectionList<Item: Identifiable, Content: View, Mo
     var modifier: () -> Modifier
     var rowContent: (Item) -> Content
     
+    /// Makes single row selection available at a time in a `List` & binds it to `selectedItem` variable.
+    /// - Parameters:
+    ///   - items: Data source of `List`, `Item`s implements `Identifiable` protocol to be followed.
+    ///   - selectedItem: Selected `Item`s is binded to this variable.
+    ///   - modifier: Modifier to apply when the related item is selected.
+    ///   - rowContent: To represent how row is displayed.
     public init(
         items: [Item],
         selectedItem: Binding<Item?>,
