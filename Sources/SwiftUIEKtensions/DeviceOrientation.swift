@@ -1,28 +1,50 @@
 //
-//  DeviceOrientation.swift
-//  
+//  OrientationInfo.swift
 //
-//  Created by Enes Karaosman on 2.06.2020.
+//
+//  Created by Enes Karaosman on 6.08.2020.
 //
 
+import Foundation
+import class UIKit.UIDevice
 import SwiftUI
 
-/**
- In `SceneDelegate.swift` create an instance
- let device = DeviceOrientation()
- 
- For inital state,
- device.isLandscape = (windowScene.interfaceOrientation.isLandscape == true)
- assign when `windowScene` is created
- 
- Then;
- 
- func windowScene(_ windowScene: UIWindowScene, didUpdate previousCoordinateSpace: UICoordinateSpace, interfaceOrientation previousInterfaceOrientation: UIInterfaceOrientation, traitCollection previousTraitCollection: UITraitCollection) {
-     device.isLandscape.toggle() <== Put
- }
- 
- */
-
-final public class DeviceOrientation: ObservableObject {
-    @Published var isLandscape: Bool = false
+final class OrientationInfo: ObservableObject {
+    enum Orientation {
+        case portrait
+        case landscape
+    }
+    
+    @Published var orientation: Orientation
+    
+    private var _observer: NSObjectProtocol?
+    
+    init() {
+        // fairly arbitrary starting value for 'flat' orientations
+        if UIDevice.current.orientation.isLandscape {
+            self.orientation = .landscape
+        }
+        else {
+            self.orientation = .portrait
+        }
+        
+        // unowned self because we unregister before self becomes invalid
+        _observer = NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: nil) { [unowned self] note in
+            guard let device = note.object as? UIDevice else {
+                return
+            }
+            if device.orientation.isPortrait {
+                self.orientation = .portrait
+            }
+            else if device.orientation.isLandscape {
+                self.orientation = .landscape
+            }
+        }
+    }
+    
+    deinit {
+        if let observer = _observer {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
 }

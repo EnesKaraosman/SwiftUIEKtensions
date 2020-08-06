@@ -8,9 +8,9 @@
 import SwiftUI
 
 /**
- Recommended Usage, put `OrientationBasedView` inside let say in a page's body
+ Recommended Usage, put `DeviceOrientationBasedView` inside let say in a page's body
  
- `OrientationBasedView`(
+ `DeviceOrientationBasedView`(
      `portrait`: {
          {} // View
          .embedInAnyView()
@@ -21,9 +21,9 @@ import SwiftUI
      }
  )
  */
-public struct OrientationBasedView<Content: View>: View {
+public struct DeviceOrientationBasedView<Content: View>: View {
     
-    @EnvironmentObject var device: DeviceOrientation
+    @EnvironmentObject var device: OrientationInfo
     
     public var portrait: Content
     public var landscape: Content
@@ -42,7 +42,7 @@ public struct OrientationBasedView<Content: View>: View {
     }
     
     public var body: some View {
-        if !device.isLandscape {
+        if device.orientation == .portrait {
             return portrait
         } else {
             return landscape
