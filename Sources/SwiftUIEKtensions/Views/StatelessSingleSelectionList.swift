@@ -48,11 +48,11 @@ public struct StatelessSingleSelectionList<Item: Identifiable, Content: View, Mo
     
     public var body: some View {
         List(items) { item in
-            self.rowContent(item)
-            .applyModifierOnConditionOrReturnSelf(on: item.id == self.selectedItem?.id, trueCase: self.modifier())
+            rowContent(item)
+            .applyModifierOnConditionOrReturnSelf(on: item.id == selectedItem?.id, trueCase: modifier())
             .contentShape(Rectangle())
             .onTapGesture {
-                self.selectedItem = item
+                selectedItem = item
             }
         }
     }

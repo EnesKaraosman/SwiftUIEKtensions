@@ -30,47 +30,39 @@ public extension View {
     }
     
     /// Apply 1 of the modifiers based on condition.
-    func apply1of2ModifierOnCondition<M1: ViewModifier, M2: ViewModifier>
+    @ViewBuilder func apply1of2ModifierOnCondition<M1: ViewModifier, M2: ViewModifier>
         (on condition: Bool, trueCase: M1, falseCase: M2) -> some View {
-        Group {
-            if condition {
-                self.modifier(trueCase)
-            } else {
-                self.modifier(falseCase)
-            }
+        if condition {
+            modifier(trueCase)
+        } else {
+            modifier(falseCase)
         }
     }
     
     /// Apply modifier if condition matches, otherwise do nothing.
-    func applyModifierOnCondition<M: ViewModifier>
+    @ViewBuilder func applyModifierOnCondition<M: ViewModifier>
         (on condition: Bool, trueCase: M) -> some View {
-        Group {
-            if condition {
-                self.modifier(trueCase)
-            }
+        if condition {
+            modifier(trueCase)
         }
     }
     
     /// Apply modifier if condition is true, otherwise returns itself.
-    func applyModifierOnConditionOrReturnSelf<M: ViewModifier>
+    @ViewBuilder func applyModifierOnConditionOrReturnSelf<M: ViewModifier>
         (on condition: Bool, trueCase: M) -> some View {
-        Group {
-            if condition {
-                self.modifier(trueCase)
-            } else {
-                self
-            }
+        if condition {
+            modifier(trueCase)
+        } else {
+            self
         }
     }
     
     @inlinable
-    public func hidden(_ isHidden: Bool) -> some View {
-        Group {
-            if isHidden {
-                hidden()
-            } else {
-                self
-            }
+    @ViewBuilder public func hidden(_ isHidden: Bool) -> some View {
+        if isHidden {
+            hidden()
+        } else {
+            self
         }
     }
         

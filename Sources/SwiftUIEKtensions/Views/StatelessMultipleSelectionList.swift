@@ -49,18 +49,18 @@ public struct StatelessMultipleSelectionList<Item: Identifiable, Content: View, 
     
     public var body: some View {
         List(items) { item in
-            self.rowContent(item)
+            rowContent(item)
             .applyModifierOnConditionOrReturnSelf(
-                on: self.selectedItems.contains(where: { $0.id == item.id }),
-                trueCase: self.modifier()
+                on: selectedItems.contains(where: { $0.id == item.id }),
+                trueCase: modifier()
             )
             .contentShape(Rectangle())
             .onTapGesture {
-                if let idx = self.selectedItems.firstIndex(where: { $0.id == item.id }) {
+                if let idx = selectedItems.firstIndex(where: { $0.id == item.id }) {
                     // Already selected, so remove
-                    self.selectedItems.remove(at: idx)
+                    selectedItems.remove(at: idx)
                 } else {
-                    self.selectedItems.append(item)
+                    selectedItems.append(item)
                 }
             }
         }

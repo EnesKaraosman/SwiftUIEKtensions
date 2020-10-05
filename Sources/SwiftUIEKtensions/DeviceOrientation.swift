@@ -34,10 +34,10 @@ final class OrientationInfo: ObservableObject {
                 return
             }
             if device.orientation.isPortrait {
-                self.orientation = .portrait
+                orientation = .portrait
             }
             else if device.orientation.isLandscape {
-                self.orientation = .landscape
+                orientation = .landscape
             }
         }
     }

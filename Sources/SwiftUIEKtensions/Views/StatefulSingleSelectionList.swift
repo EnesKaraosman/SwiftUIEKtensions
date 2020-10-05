@@ -44,18 +44,18 @@ public struct StatefulSingleSelectionList<Item: SelectableItem, Content: View, M
     
     public var body: some View {
         List(items) { item in
-            self.rowContent(item)
+            rowContent(item)
             .applyModifierOnConditionOrReturnSelf(
                 on: item.isSelected,
-                trueCase: self.modifier()
+                trueCase: modifier()
             )
             .contentShape(Rectangle())
             .onTapGesture {
-                for (idx, _) in self.items.enumerated() {
-                    self.items[idx].isSelected = false
+                for (idx, _) in items.enumerated() {
+                    items[idx].isSelected = false
                 }
-                if let idx = self.items.firstIndex(where: { $0.id == item.id }) {
-                    self.items[idx].isSelected = true
+                if let idx = items.firstIndex(where: { $0.id == item.id }) {
+                    items[idx].isSelected = true
                 }
             }
         }

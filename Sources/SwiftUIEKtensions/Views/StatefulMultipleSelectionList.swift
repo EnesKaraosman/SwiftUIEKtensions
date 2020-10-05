@@ -43,15 +43,15 @@ public struct StatefulMultipleSelectionList<Item: SelectableItem, Content: View,
     
     public var body: some View {
         List(items) { item in
-            self.rowContent(item)
+            rowContent(item)
             .applyModifierOnConditionOrReturnSelf(
                 on: item.isSelected,
-                trueCase: self.modifier()
+                trueCase: modifier()
             )
             .contentShape(Rectangle())
             .onTapGesture {
-                if let idx = self.items.firstIndex(where: { $0.id == item.id }) {
-                    self.items[idx].isSelected.toggle()
+                if let idx = items.firstIndex(where: { $0.id == item.id }) {
+                    items[idx].isSelected.toggle()
                 }
             }
         }

@@ -41,11 +41,11 @@ public struct DeviceOrientationBasedView<Content: View>: View {
         self.landscape = landscape()
     }
     
-    public var body: some View {
+    @ViewBuilder public var body: some View {
         if device.orientation == .portrait {
-            return portrait
+            portrait
         } else {
-            return landscape
+            landscape
         }
     }
     
