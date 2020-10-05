@@ -9,6 +9,13 @@ import SwiftUI
 
 public extension View {
     
+    @inlinable
+    func then(_ body: (inout Self) -> Void) -> Self {
+        var result = self
+        body(&result)
+        return result
+    }
+    
     /// Wraps view inside `AnyView`
     func embedInAnyView() -> AnyView {
         AnyView( self )
@@ -50,6 +57,17 @@ public extension View {
         Group {
             if condition {
                 self.modifier(trueCase)
+            } else {
+                self
+            }
+        }
+    }
+    
+    @inlinable
+    public func hidden(_ isHidden: Bool) -> some View {
+        Group {
+            if isHidden {
+                hidden()
             } else {
                 self
             }
