@@ -9,12 +9,13 @@ import class UIKit.UIDevice
 import SwiftUI
 
 final public class DeviceOrientationInfo: ObservableObject {
-    enum Orientation {
+    
+    public enum Orientation {
         case portrait
         case landscape
     }
     
-    @Published var orientation: Orientation
+    @Published public var orientation: Orientation
     
     private var _observer: NSObjectProtocol?
     
