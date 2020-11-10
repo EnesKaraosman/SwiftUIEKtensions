@@ -12,18 +12,16 @@ import SwiftUI
  
  `DeviceOrientationBasedView`(
      `portrait`: {
-         {} // View
-         .embedInAnyView()
+        // some `View`
      },
      `landscape`: {
-         {} // View
-         .embedInAnyView()
+         // some `View`
      }
  )
  */
 public struct DeviceOrientationBasedView<Content: View>: View {
     
-    @EnvironmentObject var device: OrientationInfo
+    @EnvironmentObject var device: DeviceOrientationInfo
     
     public var portrait: Content
     public var landscape: Content

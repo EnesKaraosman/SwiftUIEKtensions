@@ -5,11 +5,10 @@
 //  Created by Enes Karaosman on 6.08.2020.
 //
 
-import Foundation
 import class UIKit.UIDevice
 import SwiftUI
 
-final class OrientationInfo: ObservableObject {
+final public class DeviceOrientationInfo: ObservableObject {
     enum Orientation {
         case portrait
         case landscape
@@ -19,17 +18,16 @@ final class OrientationInfo: ObservableObject {
     
     private var _observer: NSObjectProtocol?
     
-    init() {
+    public init() {
         // fairly arbitrary starting value for 'flat' orientations
-        if UIDevice.current.orientation.isLandscape {
-            self.orientation = .landscape
-        }
-        else {
-            self.orientation = .portrait
-        }
+        self.orientation = UIDevice.current.orientation.isLandscape ? .landscape : .portrait
         
         // unowned self because we unregister before self becomes invalid
-        _observer = NotificationCenter.default.addObserver(forName: UIDevice.orientationDidChangeNotification, object: nil, queue: nil) { [unowned self] note in
+        _observer = NotificationCenter.default.addObserver(
+            forName: UIDevice.orientationDidChangeNotification,
+            object: nil,
+            queue: nil
+        ) { [unowned self] note in
             guard let device = note.object as? UIDevice else {
                 return
             }
@@ -47,4 +45,5 @@ final class OrientationInfo: ObservableObject {
             NotificationCenter.default.removeObserver(observer)
         }
     }
+    
 }

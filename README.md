@@ -124,4 +124,20 @@ StatefulMultipleSelectionList<Item: SelectableItem, Content: View, Modifier: Vie
 )
 ```
 
+## DeviceOrientation
+
+[DeviceOrientationBasedView](https://github.com/EnesKaraosman/SwiftUIEKtensions/blob/master/Sources/SwiftUIEKtensions/Views/DeviceOrientationBasedView.swift)
+
+Make sure to pass `DeviceOrientationInfo` object as `EnvironmentObject` then you can use; <br>
+```swift
+DeviceOrientationBasedView(
+    portrait: {
+        // some `View`
+    },
+    landscape: {
+        // some `View`
+    }
+)
+```
+
 # View Modifiers
