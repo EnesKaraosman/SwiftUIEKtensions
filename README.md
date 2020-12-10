@@ -4,10 +4,12 @@ Table of Contents
 
 * [Extensions](#extensions)
 * [Views](#views)
+    - [Mail Composer](#mail)
     - [Stateless Single Selection List](#stateless-single-selection-list)
     - [Stateful Single Selection List](#stateful-single-selection-list)
     - [Stateless Multiple Selection List](#stateless-multiple-selection-list)
     - [Stateful Multiple Selection List](#stateful-multiple-selection-list)
+    - [Device Orientation Based View](#device-orientation-based-view)
 * [View Modifiers](#view-modifiers)
 
 # Extensions
@@ -161,7 +163,7 @@ StatefulMultipleSelectionList<Item: SelectableItem, Content: View, Modifier: Vie
 )
 ```
 
-## DeviceOrientation
+## Device Orientation Based View
 
 [DeviceOrientationBasedView](https://github.com/EnesKaraosman/SwiftUIEKtensions/blob/master/Sources/SwiftUIEKtensions/Views/DeviceOrientationBasedView.swift)
 
