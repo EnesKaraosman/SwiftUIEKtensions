@@ -4,6 +4,7 @@ Table of Contents
 
 * [Extensions](#extensions)
 * [Views](#views)
+    - [Image Picker](#image-picker)
     - [Mail Composer](#mail)
     - [Stateless Single Selection List](#stateless-single-selection-list)
     - [Stateful Single Selection List](#stateful-single-selection-list)
@@ -15,6 +16,36 @@ Table of Contents
 # Extensions
 
 # Views
+
+## Image Picker
+
+Do not forget to add required privacy permissions.
+
+```swift
+struct ImagePickerExampleView: View {
+
+    @State var showImagePicker: Bool = false
+    @State var image: UIImage?
+
+    var body: some View {
+        VStack {
+            if let image = image {
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            Button("Pick image") {
+                self.showImagePicker.toggle()
+            }
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePickerView(sourceType: .photoLibrary) { image in
+                self.image = image
+            }
+        }
+    }
+}
+```
 
 ## Mail
 
