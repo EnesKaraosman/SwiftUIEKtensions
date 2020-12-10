@@ -14,6 +14,43 @@ Table of Contents
 
 # Views
 
+## Mail
+
+```swift
+import MessagesUI
+import SwiftUI
+
+@State private var result: Result<MFMailComposeResult, Error>? = nil
+@State private var isShowingMailView = false
+
+var body: some View {
+    Form {
+        Button(action: {
+            if MFMailComposeViewController.canSendMail() {
+                self.isShowingMailView.toggle()
+            } else {
+                print("Can't send emails from this device")
+            }
+            if result != nil {
+                print("Result: \(String(describing: result))")
+            }
+        }) {
+            HStack {
+                Image(systemName: "envelope")
+                Text("Contact Us")
+            }
+        }
+        // .disabled(!MFMailComposeViewController.canSendMail())
+    }
+    .sheet(isPresented: $isShowingMailView) {
+        MailView(result: $result) { composer in
+            composer.setSubject("Secret")
+            composer.setToRecipients(["eneskaraosman53@gmail.com"])
+        }
+    }
+}
+```
+
 ## Stateless Single Selection List
 
 Selects 1 item at a time & binds it to selectedItem variable.
