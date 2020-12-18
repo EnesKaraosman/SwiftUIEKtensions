@@ -6,6 +6,7 @@ Table of Contents
 * [Views](#views)
     - [Image Picker](#image-picker)
     - [Mail Composer](#mail)
+    - [Lazy View](#lazy-view)
     - [Stateless Single Selection List](#stateless-single-selection-list)
     - [Stateful Single Selection List](#stateful-single-selection-list)
     - [Stateless Multiple Selection List](#stateless-multiple-selection-list)
@@ -80,6 +81,16 @@ var body: some View {
             composer.setSubject("Secret")
             composer.setToRecipients(["eneskaraosman53@gmail.com"])
         }
+    }
+}
+```
+
+## Lazy View
+
+```swift
+NavigationView {
+    NavigationLink(destination: LazyView(Text("My details page")) {
+        Text("Go to details")
     }
 }
 ```
