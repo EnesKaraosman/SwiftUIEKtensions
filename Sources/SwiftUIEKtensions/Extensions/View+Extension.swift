@@ -58,12 +58,48 @@ public extension View {
     }
     
     @inlinable
-    @ViewBuilder public func hidden(_ isHidden: Bool) -> some View {
+    @ViewBuilder func hidden(_ isHidden: Bool) -> some View {
         if isHidden {
             hidden()
         } else {
             self
         }
+    }
+    
+    /// Performed if device has iOS.
+    func iOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
+        #if os(iOS)
+        return modifier(self)
+        #else
+        return self
+        #endif
+    }
+    
+    /// Performed if device has macOS.
+    func macOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
+        #if os(macOS)
+        return modifier(self)
+        #else
+        return self
+        #endif
+    }
+    
+    /// Performed if device has tvOS.
+    func tvOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
+        #if os(tvOS)
+        return modifier(self)
+        #else
+        return self
+        #endif
+    }
+    
+    /// Performed if device has watchOS.
+    func watchOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
+        #if os(watchOS)
+        return modifier(self)
+        #else
+        return self
+        #endif
     }
         
 }
