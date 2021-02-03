@@ -16,6 +16,16 @@ Table of Contents
 
 # Extensions
 
+### Platform based modifiers
+
+```swift
+AwesomeView()
+    .iOS { $0.background(Color.gray) }
+    .macOS { $0.background(Color.green) }
+    .tvOS { $0.background(Color.blue) }
+    .watchOS { $0.background(Color.red) }
+```
+
 # Views
 
 ## Image Picker
