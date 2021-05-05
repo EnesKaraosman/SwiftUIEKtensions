@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+#if canImport(UIKit)
+
 /**
  Recommended Usage, put `DeviceOrientationBasedView` inside let say in a page's body
  
@@ -48,3 +50,4 @@ public struct DeviceOrientationBasedView<Content: View>: View {
     }
     
 }
+#endif

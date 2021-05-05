@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
 import MessageUI
 
 /**
@@ -100,3 +101,4 @@ public struct MailView: UIViewControllerRepresentable {
 
     }
 }
+#endif

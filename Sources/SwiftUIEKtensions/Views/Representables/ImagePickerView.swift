@@ -35,6 +35,7 @@ import SwiftUI
  }
  */
 
+#if canImport(UIKit)
 public struct ImagePickerView: UIViewControllerRepresentable {
 
     private let sourceType: UIImagePickerController.SourceType
@@ -86,3 +87,4 @@ public struct ImagePickerView: UIViewControllerRepresentable {
     }
 
 }
+#endif

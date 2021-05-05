@@ -5,6 +5,7 @@
 //  Created by Enes Karaosman on 6.08.2020.
 //
 
+#if canImport(UIKit)
 import class UIKit.UIDevice
 import SwiftUI
 
@@ -48,3 +49,4 @@ final public class DeviceOrientationInfo: ObservableObject {
     }
     
 }
+#endif
