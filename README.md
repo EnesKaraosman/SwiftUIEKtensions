@@ -16,14 +16,23 @@ Table of Contents
 
 # Extensions
 
+### Keyboard related modifiers (iOS only)
+
+```swift
+AwesomeView()
+    .onKeyboardAppear { heigth in
+    
+    }
+```
+
 ### Platform based modifiers
 
 ```swift
 AwesomeView()
-    .iOS { $0.background(Color.gray) }
-    .macOS { $0.background(Color.green) }
-    .tvOS { $0.background(Color.blue) }
-    .watchOS { $0.background(Color.red) }
+    .modifier(for: .iOS, { $0.background(Color.gray) })
+    .modifier(for: .macOS, { $0.background(Color.green)}
+    .tvOSOnlyModifier { $0.background(Color.blue) }
+    .watchOSOnlyModifier { $0.background(Color.red) }
 ```
 
 # Views

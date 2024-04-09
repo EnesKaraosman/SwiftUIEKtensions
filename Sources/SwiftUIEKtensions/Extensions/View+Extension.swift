@@ -65,9 +65,23 @@ public extension View {
             self
         }
     }
-    
+
+    @ViewBuilder
+    func modifier<Content: View>(for platform: Platform, _ modifier: (Self) -> Content) -> some View {
+        switch platform {
+        case .iOS:
+            self.iOSOnlyModifier(modifier)
+        case .macOS:
+            self.macOSOnlyModifier(modifier)
+        case .tvOS:
+            self.tvOSOnlyModifier(modifier)
+        case .watchOS:
+            self.watchOSOnlyModifier(modifier)
+        }
+    }
+
     /// Performed if device has iOS.
-    func iOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
+    func iOSOnlyModifier<Content: View>(_ modifier: (Self) -> Content) -> some View {
         #if os(iOS)
         return modifier(self)
         #else
@@ -76,7 +90,7 @@ public extension View {
     }
     
     /// Performed if device has macOS.
-    func macOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
+    func macOSOnlyModifier<Content: View>(_ modifier: (Self) -> Content) -> some View {
         #if os(macOS)
         return modifier(self)
         #else
@@ -85,7 +99,7 @@ public extension View {
     }
     
     /// Performed if device has tvOS.
-    func tvOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
+    func tvOSOnlyModifier<Content: View>(_ modifier: (Self) -> Content) -> some View {
         #if os(tvOS)
         return modifier(self)
         #else
@@ -94,7 +108,7 @@ public extension View {
     }
     
     /// Performed if device has watchOS.
-    func watchOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
+    func watchOSOnlyModifier<Content: View>(_ modifier: (Self) -> Content) -> some View {
         #if os(watchOS)
         return modifier(self)
         #else
@@ -102,4 +116,12 @@ public extension View {
         #endif
     }
         
+}
+
+
+public enum Platform {
+    case iOS
+    case macOS
+    case tvOS
+    case watchOS
 }
