@@ -16,13 +16,19 @@ Table of Contents
 
 # Extensions
 
+```swift
+TextField("Input", text: $text, axis: .vertical)
+    .textFieldStyle(.roundedBorder)
+    .readSize {
+        print("size: \($0)")
+    }
+```
+
 ### Keyboard related modifiers (iOS only)
 
 ```swift
 AwesomeView()
-    .onKeyboardAppear { heigth in
-    
-    }
+    .onKeyboardAppear { heigth in }
 ```
 
 ### Platform based modifiers

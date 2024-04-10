@@ -115,9 +115,32 @@ public extension View {
         return self
         #endif
     }
-        
+
+    /// Read view's size and bind it to `size` property
+    func readSize(to size: Binding<CGSize>) -> some View {
+        readSize { size.wrappedValue = $0 }
+    }
+
+    /// Read view's size and take action on change
+    func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
+        background(
+            GeometryReader { proxy in
+                Color.clear
+                    .preference(
+                        key: SizePreferenceKey.self,
+                        value: proxy.size
+                    )
+            }
+        )
+        .onPreferenceChange(SizePreferenceKey.self, perform: onChange)
+    }
 }
 
+struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
 
 public enum Platform {
     case iOS
